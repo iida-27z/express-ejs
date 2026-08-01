@@ -1,0 +1,86 @@
+{
+  "ejs:scriptlet": {
+    "scope": "ejs,html",
+    "prefix": "ejs",
+    "body": "<% ${1:code} %>",
+    "description": "EJS scriptlet tag (<% %>)"
+  },
+  "ejs:output": {
+    "scope": "ejs,html",
+    "prefix": "ejsout",
+    "body": "<%- ${1:data} %>",
+    "description": "EJS unescaped raw output (<%- %>)"
+  },
+  "ejs:escape": {
+    "scope": "ejs,html",
+    "prefix": "ejsesc",
+    "body": "<%= ${1:data} %>",
+    "description": "EJS escaped output (<%= %>)"
+  },
+  "ejs:comment": {
+    "scope": "ejs,html",
+    "prefix": "ejscom",
+    "body": "<%# ${1:comment} %>",
+    "description": "EJS comment (<%# %>)"
+  },
+  "ejs:literal": {
+    "scope": "ejs,html",
+    "prefix": "ejslit",
+    "body": "<%% ${1:literal} %>",
+    "description": "EJS literal tag (<%% %>)"
+  },
+  "ejs:include": {
+    "scope": "ejs,html",
+    "prefix": "ejsinc",
+    "body": "<%- include('${1:path/filename}') %>",
+    "description": "EJS include partial (<%- include() %>)"
+  },
+  "ejs:for": {
+    "scope": "ejs,html",
+    "prefix": "ejsfor",
+    "body": [
+      "<% for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) { %>",
+      "\t$0",
+      "<% } %>"
+    ],
+    "description": "EJS for loop"
+  },
+  "ejs:forEach": {
+    "scope": "ejs,html",
+    "prefix": "ejseach",
+    "body": [
+      "<% ${1:array}.forEach(${2:item} => { %>",
+      "\t$0",
+      "<% }) %>"
+    ],
+    "description": "EJS forEach loop"
+  },
+  "ejs:if": {
+    "scope": "ejs,html",
+    "prefix": "ejsif",
+    "body": [
+      "<% if (${1:condition}) { %>",
+      "\t$0",
+      "<% } %>"
+    ],
+    "description": "EJS if statement"
+  },
+  "ejs:elseIf": {
+    "scope": "ejs,html",
+    "prefix": "ejselif",
+    "body": [
+      "<% } else if (${1:condition}) { %>",
+      "\t$0"
+    ],
+    "description": "EJS else if statement"
+  },
+  "ejs:else": {
+    "scope": "ejs,html",
+    "prefix": "ejselse",
+    "body": [
+      "<% } else { %>",
+      "\t$0"
+    ],
+    "description": "EJS else statement"
+  }
+}

@@ -1,0 +1,58 @@
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/docker/node/Dockerfile
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - 3000:3000
+    volumes:
+      - ./../:/workspace/app
+    networks:
+      default:
+    depends_on:
+      - db
+  db:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/docker/mysql/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+      # - db_data:/var/lib/mysql # DBの永続化を有効にする場合はコメントアウトを外す
+    networks:
+      default:
+        aliases:
+          - ${MYSQL_HOST}
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p${MYSQL_ROOT_PASSWORD}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  db_data:

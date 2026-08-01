@@ -1,0 +1,42 @@
+{
+    "name": "node",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace/app",
+    "initializeCommand": "[ -f .devcontainer/.env ] || cp .devcontainer/.env.example .devcontainer/.env",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "MS-CEINTL.vscode-language-pack-ja",
+                "streetsidesoftware.code-spell-checker",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "ecmel.vscode-html-css",
+                "mhutchie.git-graph",
+                "GitHub.vscode-pull-request-github",
+                "github.vscode-github-actions",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-mysql"
+            ],
+            "settings": {
+                "sqltools.connections": [
+                    {
+                        "ssh": "Disabled",
+                        "previewLimit": 100,
+                        "server": "${containerEnv:MYSQL_HOST}",
+                        "port": 3306,
+                        "askForPassword": false,
+                        "driver": "MySQL",
+                        "name": "devcontainer",
+                        "database": "${containerEnv:MYSQL_DATABASE}",
+                        "username": "${containerEnv:MYSQL_USER}",
+                        "password": "${containerEnv:MYSQL_PASSWORD}"
+                    }
+                ]
+            }
+        }
+    },
+    "remoteEnv": {
+        "GIT_EDITOR": "code --wait"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    // スペルチェッカーの設定
+    "cSpell.words": [
+        "CEINTL",
+        "dbaeumer",
+        "eamodio",
+        "ecmel",
+        "esbenp",
+        "healthcheck",
+        "initdb",
+        "mhutchie",
+        "mtxr",
+        "mysqladmin",
+        "noto",
+        "Saarsoo",
+        "sqltools",
+        "trixie"
+    ],
+    // gitの設定
+    "git.blame.statusBarItem.enabled": true,
+    // HTML/CSSの設定
+    "[html]": {
+        "editor.quickSuggestions": {
+            "other": true
+        }
+    },
+    "css.styleSheets": [
+        "**/*.css"
+    ]
+}
